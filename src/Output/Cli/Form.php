@@ -58,15 +58,17 @@ class Form
     {
         $answers = [];
 
-        foreach ($questionRepository->getAllQuestions() as $questionObject) {
-            $this->putQuestion($questionObject->title, $questionObject->alternatives);
+        foreach ($questionRepository->getAllQuestions() as $question) {
+            $this->putQuestion($question->title, $question->alternatives);
 
-            $alternativeChoosen = $this->getValidResponse($this->readFromStdin());
+            $choosenAlternative = $this->getValidResponse($this->readFromStdin());
+            $questionResponseToDisplay = $question->alternatives[$choosenAlternative];
+            $originalKey = array_search($questionResponseToDisplay, $question->originalAlternatives);
 
-            $alternativeDescription = $questionObject->alternatives[$alternativeChoosen];
-            $originalKey = array_search($alternativeDescription, $questionObject->originalAlternatives);
+            $priority = array_search($choosenAlternative, $answers);
+            $index = $priority === false ? $question->priority : $priority + $question->priority;
 
-            $answers[] = $originalKey;
+            $answers[$index] = $originalKey;
         }
 
         return $answers;

@@ -15,6 +15,8 @@ abstract class AbstractQuestion
 
     public $originalAlternatives = [];
 
+    public $priority;
+
     public static $questionNumerations = ['a','b','c','d','e'];
 
     /**

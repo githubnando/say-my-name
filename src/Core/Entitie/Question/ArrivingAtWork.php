@@ -19,4 +19,6 @@ class ArrivingAtWork extends AbstractQuestion
         'Sugere que os colegas trabalhem na ideia de um novo projeto',
         'Desabafa sobre como odeia PHP. Todo mundo na sala adora PHP'
     ];
+
+    public $priority = 2;
 }

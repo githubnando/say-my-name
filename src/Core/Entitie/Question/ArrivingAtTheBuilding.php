@@ -18,4 +18,6 @@ class ArrivingAtTheBuilding extends AbstractQuestion
         'Com uma leve intimidação passivo­agressiva, encontra um lugar no elevador',
         'Cria um app que mostra a lotação do elevador. Vende o app e fica milionário'
     ];
+
+    public $priority = 3;
 }
