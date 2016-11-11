@@ -13,6 +13,8 @@ abstract class AbstractQuestion
 
     public $alternatives = [];
 
+    public $originalAlternatives = [];
+
     public static $questionNumerations = ['a','b','c','d','e'];
 
     /**
@@ -20,8 +22,16 @@ abstract class AbstractQuestion
      */
     public function __construct()
     {
+        $this->shuffe();
+    }
+
+    private function shuffe()
+    {
+        $this->originalAlternatives = $this->addNumerations($this->alternatives);
+        shuffle($this->alternatives);
         $this->alternatives = $this->addNumerations($this->alternatives);
     }
+
 
     /**
      * @param array $alternatives

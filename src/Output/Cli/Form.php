@@ -60,7 +60,13 @@ class Form
 
         foreach ($questionRepository->getAllQuestions() as $questionObject) {
             $this->putQuestion($questionObject->title, $questionObject->alternatives);
-            $answers[] = $this->getValidResponse($this->readFromStdin());
+
+            $alternativeChoosen = $this->getValidResponse($this->readFromStdin());
+
+            $alternativeDescription = $questionObject->alternatives[$alternativeChoosen];
+            $originalKey = array_search($alternativeDescription, $questionObject->originalAlternatives);
+
+            $answers[] = $originalKey;
         }
 
         return $answers;
