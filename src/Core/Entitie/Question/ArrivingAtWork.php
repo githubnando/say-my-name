@@ -7,10 +7,10 @@ namespace Geekout\Core\Entitie\Question;
  *
  * @package Geekout\Core\Entitie\Question
  */
-class ArrivingAtWork
+class ArrivingAtWork extends AbstractQuestion
 {
 
-    public $title = 'Você chega no trabalho e as convenções sociais te obrigam a puxar assunto.';
+    public $title = 'Você chega no trabalho e as convenções sociais te obrigam a puxar assunto';
 
     public $alternatives = [
         'Fala sobre a política, eleições, como tudo é um absurdo',

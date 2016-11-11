@@ -7,9 +7,9 @@ namespace Geekout\Core\Entitie\Question;
  *
  * @package Geekout\Core\Entitie\Question
  */
-class ArrivingAtTheBuilding
+class ArrivingAtTheBuilding extends AbstractQuestion
 {
-    public $title = 'Chega no prédio e o elevador está cheio.';
+    public $title = 'Chega no prédio e o elevador está cheio';
 
     public $alternatives = [
         'Convence parte das pessoas a esperarem o próximo',

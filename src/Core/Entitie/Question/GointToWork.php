@@ -9,7 +9,7 @@ namespace Geekout\Core\Entitie\Question;
  */
 class GointToWork extends AbstractQuestion
 {
-    public $title = 'Indo para o trabalho você encontra uma senhora idosa caída na rua.';
+    public $title = 'Indo para o trabalho você encontra uma senhora idosa caída na rua';
 
     public $alternatives = [
         'Ela vai atrapalhar seu horário. Oculte o corpo',
