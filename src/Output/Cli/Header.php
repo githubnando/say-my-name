@@ -7,6 +7,8 @@ namespace Geekout\Output\Cli;
  */
 class Header
 {
+    use TraitConsole;
+
     private $delimiter = '#';
 
     private $title = 'Hello darkness my old friend, i\'ve come to talk to you again! :)';
@@ -22,28 +24,5 @@ class Header
         $this->newLine();
 
         $this->putsDelimiter($howMany);
-    }
-
-    /**
-     * @param $iteration
-     */
-    private function putsDelimiter($iteration)
-    {
-        for ($counter = 1; $counter < $iteration; $counter++) {
-            echo '#';
-        }
-
-        $this->newLine();
-    }
-
-    /**
-     * @param $howMany
-     */
-    private function newLine($howMany = 1)
-    {
-        $counter = 1;
-        while ($counter++ <= $howMany) {
-            echo PHP_EOL;
-        }
     }
 }
