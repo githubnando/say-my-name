@@ -13,7 +13,7 @@ use Geekout\Core\Model\Answer;
 class Question
 {
 
-    /** @var AbstractQuestion  */
+    /** @var AbstractQuestion */
     private $question;
 
     /**

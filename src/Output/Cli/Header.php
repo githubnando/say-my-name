@@ -18,11 +18,11 @@ class Header
         $this->newLine();
 
         $howMany = (strlen($this->title) + 11);
-        $this->putsDelimiter($howMany);
+        $this->putDelimiter($howMany);
 
         echo "#### {$this->title} ####";
         $this->newLine();
 
-        $this->putsDelimiter($howMany);
+        $this->putDelimiter($howMany);
     }
 }
