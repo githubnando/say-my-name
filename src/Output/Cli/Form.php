@@ -17,11 +17,15 @@ class Form
 {
     use TraitConsole;
 
+    private $answers;
+
     public function display()
     {
         $questionRepository = new \Geekout\Core\Repository\Question();
 
-        array_walk($questionRepository->getAllQuestions(), [$this, 'displayQuestionAndReadFromStdin']);
+        foreach ($questionRepository->getAllQuestions() as $question) {
+            $this->displayQuestionAndReadFromStdin($question);
+        }
     }
 
     /**
@@ -31,7 +35,38 @@ class Form
     {
         $this->putQuestion($questionObject->title, $questionObject->alternatives);
 
-        $responses[] = fgetc(STDIN);
+        $this->answers[] = $this->getValidResponse($this->readFromStdin());
+    }
+
+    /**
+     * @param      $response
+     *
+     * @return string
+     */
+    private function getValidResponse($response)
+    {
+        if (in_array($response, AbstractQuestion::$questionNumerations)) {
+            return $response;
+        }
+
+        $range = strtoupper(AbstractQuestion::$questionNumerations[0]);
+        $range .= ' à ';
+        $range .= strtoupper(end(AbstractQuestion::$questionNumerations));
+
         $this->newLine();
+        $this->indent(2, 'Você precisa informar uma letra de ' . $range. ': ');
+
+        return $this->getValidResponse($this->readFromStdin());
+    }
+
+    /**
+     * @return string
+     */
+    private function readFromStdin()
+    {
+        $handler = fopen('php://stdin', 'r');
+        $response = fgetc($handler);
+        fclose($handler);
+        return $response;
     }
 }
