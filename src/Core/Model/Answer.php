@@ -2,6 +2,7 @@
 
 namespace Geekout\Core\Model;
 
+
 /**
  * Class Answer
  *
@@ -10,11 +11,12 @@ namespace Geekout\Core\Model;
 class Answer
 {
     /** @var array  */
-    private $shows;
+    private $shows = [];
 
     /** @var array  */
     private $descriptions = [];
 
+    /** @var array  */
     private $answers = [];
 
     /**
@@ -26,30 +28,11 @@ class Answer
     {
         $this->answers = $answers;
 
-        $this->setDescriptions([
-            'a' => 'Você é House of Cards: ataca o problema com método e faz de ' .
-                'tudo para resolver a situação.',
+        $descriptions = (new \Geekout\Core\Repository\Question())->getDescriptions();
+        $shows = (new \Geekout\Core\Repository\Answer())->getShows();
 
-            'b'=> 'Você é Game of Thrones: não tem muita delicadeza nas ações, ' .
-                'mas resolve o problema de forma prática.',
-
-            'c' => 'Você é Lost: faz as coisas sem ter total certeza se é o caminho certo ou se faz ' .
-                'sentido, mas no final dá tudo certo.',
-
-            'd' => 'Você é Breaking Bad: pra fazer acontecer você toma a liderança, mas ' .
-                'sempre contando com seus parceiros.',
-
-            'e' => 'Você é Silicon Valley: vive a tecnologia o tempo todo e faz disso um ' .
-                'mantra para cada situação no dia.',
-        ]);
-
-        $this->setShows([
-            'a' => 'House of Cards',
-            'b' => 'Game of Thrones',
-            'c' => 'Lost',
-            'd' => 'Breaking Bad',
-            'e' => 'Silicon Valley'
-        ]);
+        $this->setDescriptions($descriptions);
+        $this->setShows($shows);
     }
 
     /**
