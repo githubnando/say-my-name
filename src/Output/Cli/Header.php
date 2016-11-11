@@ -20,7 +20,7 @@ class Header
         $howMany = (strlen(self::$title) + 11);
         $this->putDelimiter($howMany);
 
-        echo '####' . self::$title . '####';
+        echo '#### ' . self::$title . ' ####';
         $this->newLine();
 
         $this->putDelimiter($howMany);
