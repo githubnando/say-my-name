@@ -9,11 +9,15 @@ namespace Geekout\Core\Entitie\Question;
  */
 class GointToWork extends AbstractQuestion
 {
-    protected $alternatives = [
-        'Acorda cedo e come frutas cortadas metodicamente',
-        'Sai da cama com o despertador e se prepara para a batalha da semana.',
-        'Só consegue lembrar do seu nome depois do café.',
-        'Levanta e faz café pra todos da casa.',
-        'Passa o café e conserta um erro no HTML.',
+    public $title = 'Indo para o trabalho você encontra uma senhora idosa caída na rua';
+
+    public $alternatives = [
+        'Ela vai atrapalhar seu horário. Oculte o corpo',
+        'Levanta a senhora e jura protegê­la com sua vida',
+        'Ajuda­a, mas questiona sua real identidade',
+        'Oferece para caminharem juntos até um destino em comum',
+        'Testa se ela roda bem no Firefox. Não roda'
     ];
+
+    public $priority = 4;
 }

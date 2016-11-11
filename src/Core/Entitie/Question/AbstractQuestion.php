@@ -7,9 +7,15 @@ namespace Geekout\Core\Entitie\Question;
  *
  * @package Geekout\Core\Entitie\Question
  */
-class AbstractQuestion
+abstract class AbstractQuestion
 {
-    protected $alternatives = [];
+    public $title = '';
+
+    public $alternatives = [];
+
+    public $originalAlternatives = [];
+
+    public $priority;
 
     public static $questionNumerations = ['a','b','c','d','e'];
 
@@ -18,8 +24,16 @@ class AbstractQuestion
      */
     public function __construct()
     {
+        $this->shuffe();
+    }
+
+    private function shuffe()
+    {
+        $this->originalAlternatives = $this->addNumerations($this->alternatives);
+        shuffle($this->alternatives);
         $this->alternatives = $this->addNumerations($this->alternatives);
     }
+
 
     /**
      * @param array $alternatives
