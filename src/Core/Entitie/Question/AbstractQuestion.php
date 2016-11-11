@@ -7,7 +7,7 @@ namespace Geekout\Core\Entitie\Question;
  *
  * @package Geekout\Core\Entitie\Question
  */
-class AbstractQuestion
+abstract class AbstractQuestion
 {
     protected $alternatives = [];
 
