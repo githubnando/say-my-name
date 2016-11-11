@@ -8,6 +8,7 @@ use Geekout\Core\Entitie\Question\GointToWork;
 use Geekout\Core\Entitie\Question\InTheMorning;
 use Geekout\Core\Model\Answer;
 use Geekout\Core\Model\Question;
+use Geekout\Core\Repository\Question as QuestionRepository;
 
 /**
  * Class Form
@@ -22,14 +23,7 @@ class Form
 
     public function display()
     {
-        $questionRepository = new \Geekout\Core\Repository\Question();
-
-        $answers = [];
-        foreach ($questionRepository->getAllQuestions() as $questionObject) {
-            $this->putQuestion($questionObject->title, $questionObject->alternatives);
-            $answers[] = $this->getValidResponse($this->readFromStdin());
-        }
-
+        $answers = $this->displayQuestionsAndReceiveAnswers(new QuestionRepository);
         $model = new Answer($answers);
 
         $televisionShow = $model->retrieveUserEquivalentTelevisionShow();
@@ -53,6 +47,23 @@ class Form
         echo $this->indent(1, $description);
 
         $this->newLine(2);
+    }
+
+    /**
+     * @param QuestionRepository $questionRepository
+     *
+     * @return array
+     */
+    private function displayQuestionsAndReceiveAnswers(QuestionRepository $questionRepository)
+    {
+        $answers = [];
+
+        foreach ($questionRepository->getAllQuestions() as $questionObject) {
+            $this->putQuestion($questionObject->title, $questionObject->alternatives);
+            $answers[] = $this->getValidResponse($this->readFromStdin());
+        }
+
+        return $answers;
     }
 
     /**
