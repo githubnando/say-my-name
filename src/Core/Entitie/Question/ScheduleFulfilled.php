@@ -7,9 +7,9 @@ namespace Geekout\Core\Entitie\Question;
  *
  * @package Geekout\Core\Entitie\Question
  */
-class ScheduleFulfilled
+class ScheduleFulfilled extends AbstractQuestion
 {
-    public $title = 'A pauta pegou o dia todo, mas você está indo para casa.';
+    public $title = 'A pauta pegou o dia todo, mas você está indo para casa';
 
     public $alternatives = [
         'Vou chamar aqui o meu Uber',

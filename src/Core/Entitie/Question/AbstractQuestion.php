@@ -9,7 +9,9 @@ namespace Geekout\Core\Entitie\Question;
  */
 abstract class AbstractQuestion
 {
-    protected $alternatives = [];
+    public $title = '';
+
+    public $alternatives = [];
 
     public static $questionNumerations = ['a','b','c','d','e'];
 
