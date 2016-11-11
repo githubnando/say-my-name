@@ -6,6 +6,7 @@ use Geekout\Core\Entitie\Question\AbstractQuestion;
 use Geekout\Core\Entitie\Question\ArrivingAtTheBuilding;
 use Geekout\Core\Entitie\Question\GointToWork;
 use Geekout\Core\Entitie\Question\InTheMorning;
+use Geekout\Core\Model\Answer;
 use Geekout\Core\Model\Question;
 
 /**
@@ -23,19 +24,35 @@ class Form
     {
         $questionRepository = new \Geekout\Core\Repository\Question();
 
-        foreach ($questionRepository->getAllQuestions() as $question) {
-            $this->displayQuestionAndReadFromStdin($question);
+        $answers = [];
+        foreach ($questionRepository->getAllQuestions() as $questionObject) {
+            $this->putQuestion($questionObject->title, $questionObject->alternatives);
+            $answers[] = $this->getValidResponse($this->readFromStdin());
         }
+
+        $model = new Answer($answers);
+
+        $televisionShow = $model->retrieveUserEquivalentTelevisionShow();
+        $resultToPrint = $model->getShowDescription($televisionShow);
+
+        $this->displayUserTelevisionShow($resultToPrint);
     }
 
     /**
-     * @param AbstractQuestion $questionObject
+     * @param $description
      */
-    private function displayQuestionAndReadFromStdin(AbstractQuestion $questionObject)
+    private function displayUserTelevisionShow($description)
     {
-        $this->putQuestion($questionObject->title, $questionObject->alternatives);
+        $this->newLine(2);
 
-        $this->answers[] = $this->getValidResponse($this->readFromStdin());
+        $howMany = (strlen(Header::$title) + 11);
+        $this->putDelimiter($howMany);
+
+        $this->newLine();
+
+        echo $this->indent(1, $description);
+
+        $this->newLine(2);
     }
 
     /**
