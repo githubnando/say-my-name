@@ -19,8 +19,12 @@ class Form
 {
     use TraitConsole;
 
+    /** @var array Respostas do usuário */
     public $answers = [];
 
+    /**
+     * Imprime o formulário de perguntas, dipondo o resultado no final.
+     */
     public function display()
     {
         $answers = $this->displayQuestionsAndReceiveAnswers(new QuestionRepository);
@@ -33,6 +37,8 @@ class Form
     }
 
     /**
+     * Mostra o resulado (descrição da série equivalente ao usuário).
+     *
      * @param $description
      */
     private function displayUserTelevisionShow($description)
@@ -50,6 +56,8 @@ class Form
     }
 
     /**
+     * Imprime as perguntas e persiste as respostas.
+     *
      * @param QuestionRepository $questionRepository
      *
      * @return array
@@ -70,6 +78,8 @@ class Form
     }
 
     /**
+     * Persiste a resposta de uma pergunta.
+     *
      * @param AbstractQuestion $question
      * @param AbstractQuestion $choosenAlternative
      */
@@ -80,7 +90,11 @@ class Form
     }
 
     /**
-     * @param      $response
+     * Recursivamente pergunta ao usuário uma resposta válida (de acordo com
+     * as opções de uma pergunta).
+     *
+     * @param $response
+     * @see AbstractQuestion::$questionNumerations
      *
      * @return string
      */
@@ -101,6 +115,8 @@ class Form
     }
 
     /**
+     * Obtem a pergunta.
+     *
      * @return string
      */
     public function readFromStdin()

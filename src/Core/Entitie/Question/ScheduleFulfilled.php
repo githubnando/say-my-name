@@ -9,8 +9,10 @@ namespace Geekout\Core\Entitie\Question;
  */
 class ScheduleFulfilled extends AbstractQuestion
 {
+    /** @inheritDoc */
     public $title = 'A pauta pegou o dia todo, mas você está indo para casa';
 
+    /** @inheritDoc */
     public static $alternatives = [
         'Vou chamar aqui o meu Uber',
         'Pegarei o bus junto com o resto do povo',

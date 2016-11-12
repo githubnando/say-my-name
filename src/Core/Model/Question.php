@@ -12,7 +12,6 @@ use Geekout\Core\Model\Answer;
  */
 class Question
 {
-
     /** @var AbstractQuestion */
     private $question;
 
@@ -24,19 +23,5 @@ class Question
     public function __construct(AbstractQuestion $question)
     {
         $this->question = $question;
-    }
-
-    /**
-     * @param $responded
-     *
-     * @return \Geekout\Core\Model\Answer
-     */
-    public function getAnswer($responded)
-    {
-        if (in_array($responded, AbstractQuestion::$questionNumerations) == false) {
-            throw new \InvalidArgumentException();
-        }
-
-        return new Answer($responded);
     }
 }

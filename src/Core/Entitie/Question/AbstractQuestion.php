@@ -9,15 +9,26 @@ namespace Geekout\Core\Entitie\Question;
  */
 abstract class AbstractQuestion
 {
+    /** @var string Titulo de uma pergunta */
     public $title = '';
 
+    /**
+     * Alternativas da pergunta seguindo a ordem para definição da série.
+     *
+     * @see \Geekout\Core\Repository\Answer
+     * @var array
+     */
     public $originalAlternatives = [];
 
+    /** @var array Alternativas de escolha da pergunta */
     public static $alternatives = [];
 
+    /** @var array Chave das alternativas de escolha de uma pergunta */
     public static $questionNumerations = ['a','b','c','d','e'];
 
     /**
+     * Por padrão, randomiza as chaves.
+     *
      * AbstractQuestion constructor.
      */
     public function __construct()
@@ -25,6 +36,11 @@ abstract class AbstractQuestion
         $this->shuffe();
     }
 
+    /**
+     * Randomiza as alternativas, preservando a ordem original em $originalAlternatives.
+     *
+     * @see $originalAlternatives
+     */
     private function shuffe()
     {
         $this->originalAlternatives = $this->addNumerations(static::$alternatives);
@@ -34,6 +50,9 @@ abstract class AbstractQuestion
 
 
     /**
+     * Combina as chaves das alternativas com os valores.
+     * ['Descricao da alternativa'] => ['a' => 'Descricao da alternativa']
+     *
      * @param array $alternatives
      *
      * @return array
@@ -44,6 +63,9 @@ abstract class AbstractQuestion
     }
 
     /**
+     * Obtem a chave original da alternativa (seguindo a ordem original,
+     * antes de randomizar as alternativas).
+     *
      * @param $choosenAlternative
      *
      * @return mixed
@@ -55,6 +77,8 @@ abstract class AbstractQuestion
     }
 
     /**
+     * Obtem a chave correspondente à questão de uma alternativa.
+     *
      * @param $letter
      *
      * @return mixed

@@ -4,23 +4,25 @@ namespace Geekout\Core\Model;
 
 
 /**
+ * Responsável pelas operações relacionadas às respostas.
+ *
  * Class Answer
  *
  * @package Geekout\Core\Model
  */
 class Answer
 {
-    /** @var array  */
+    /** @var array Séries de televisão disponíveis */
     private $shows = [];
 
-    /** @var array  */
+    /** @var array Descrição das séries de televisão (resposta) */
     private $descriptions = [];
 
-    /** @var array  */
+    /** @var array Array com as respostas do usuário */
     private $answers = [];
 
-
     /**
+     *
      * Answer constructor.
      *
      * @param answers
@@ -37,16 +39,10 @@ class Answer
     }
 
     /**
-     * @param $answer
+     * Obtem a série de televisão equivalente de acordo com as respostas fornecidas pelo usuário.
+     * Conta o maior número de respostas equivalente a uma série, se houver empate, retorna
+     * de acordo com um mapa, para gerar respostas únicas em todas as combinações.
      *
-     * @return mixed
-     */
-    private function getEquivalentTelevisionShow($answer)
-    {
-        return $this->shows[$answer];
-    }
-
-    /**
      * @return mixed
      */
     public function retrieveUserEquivalentTelevisionShow()
@@ -80,6 +76,9 @@ class Answer
     }
 
     /**
+     * Conta o número de respostas equivalente a uma série das respostas do
+     * usuario.
+     *
      * @param $objects
      *
      * @return array
@@ -100,6 +99,11 @@ class Answer
     }
 
     /**
+     * Resolve o empate utilizando mapa de tradução com base na resposta que não está
+     * em concorrência (empate).
+     *
+     * @param array $countedAnswers Array com as respostas do usuário contadas
+     *
      * @return array
      */
     private function resolveConcurrence($countedAnswers)

@@ -9,8 +9,10 @@ namespace Geekout\Core\Entitie\Question;
  */
 class GointToWork extends AbstractQuestion
 {
+    /** @inheritDoc */
     public $title = 'Indo para o trabalho você encontra uma senhora idosa caída na rua';
 
+    /** @inheritDoc */
     public static $alternatives = [
         'Ela vai atrapalhar seu horário. Oculte o corpo',
         'Levanta a senhora e jura protegê­la com sua vida',

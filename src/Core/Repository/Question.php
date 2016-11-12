@@ -10,6 +10,8 @@ use Geekout\Core\Entitie\Question\InTheMorning;
 use Geekout\Core\Entitie\Question\ScheduleFulfilled;
 
 /**
+ * Responsável pela obtenção das informações persistas referente às perguntas.
+ *
  * Class Question
  *
  * @package Geekout\Core\Repository

@@ -9,8 +9,10 @@ namespace Geekout\Core\Entitie\Question;
  */
 class ArrivingAtTheBuilding extends AbstractQuestion
 {
+    /** @inheritDoc */
     public $title = 'Chega no prédio e o elevador está cheio';
 
+    /** @inheritDoc */
     public static $alternatives = [
         'Convence parte das pessoas a esperarem o próximo',
         'Ignora as pessoas no elevador e entra de qualquer forma',

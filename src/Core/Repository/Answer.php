@@ -3,6 +3,8 @@
 namespace Geekout\Core\Repository;
 
 /**
+ * Responsável pela obtenção das informações persistas referente às respostas.
+ *
  * Class Answer
  *
  * @package Geekout\Core\Repository

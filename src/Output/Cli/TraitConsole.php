@@ -9,8 +9,10 @@ namespace Geekout\Output\Cli;
  */
 trait TraitConsole
 {
+    /** @var int Contador utilizado para enumerar as perguntas */
     protected $counter = 1;
 
+    /** @var string Prefixo utilizado para indentação */
     protected $displayPrefix = '    ';
 
     /**
@@ -26,6 +28,8 @@ trait TraitConsole
     }
 
     /**
+     * Exibe uma perguntas e suas alternativas.
+     *
      * @param $title
      * @param $options
      */
@@ -45,6 +49,8 @@ trait TraitConsole
     }
 
     /**
+     * Exibe uma nova linha.
+     *
      * @param $howMany
      */
     public function newLine($howMany = 1)
@@ -56,6 +62,8 @@ trait TraitConsole
     }
 
     /**
+     * Indenta de acordo com o número escolhido.
+     *
      * @param int $howMany
      * @param string $append
      *
