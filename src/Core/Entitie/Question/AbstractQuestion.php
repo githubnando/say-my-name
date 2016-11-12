@@ -44,4 +44,27 @@ abstract class AbstractQuestion
     {
         return array_combine(self::$questionNumerations, $this->alternatives);
     }
+
+    /**
+     * @param $choosenAlternative
+     * @param $answers
+     *
+     * @return mixed
+     */
+    public function getQuestionPriotity($choosenAlternative, $answers)
+    {
+        $priority = array_search($choosenAlternative, $answers);
+        return $priority === false ? $this->priority : $priority + $this->priority;
+    }
+
+    /**
+     * @param $choosenAlternative
+     *
+     * @return mixed
+     */
+    public function getAlternativeOriginalKey($choosenAlternative)
+    {
+        $questionResponseToDisplay = $this->alternatives[$choosenAlternative];
+        return array_search($questionResponseToDisplay, $this->originalAlternatives);
+    }
 }

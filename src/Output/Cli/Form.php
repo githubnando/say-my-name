@@ -19,7 +19,7 @@ class Form
 {
     use TraitConsole;
 
-    private $answers;
+    public $answers = [];
 
     public function display()
     {
@@ -56,22 +56,27 @@ class Form
      */
     private function displayQuestionsAndReceiveAnswers(QuestionRepository $questionRepository)
     {
-        $answers = [];
+        $this->answers = [];
 
         foreach ($questionRepository->getAllQuestions() as $question) {
             $this->putQuestion($question->title, $question->alternatives);
 
             $choosenAlternative = $this->getValidResponse($this->readFromStdin());
-            $questionResponseToDisplay = $question->alternatives[$choosenAlternative];
-            $originalKey = array_search($questionResponseToDisplay, $question->originalAlternatives);
 
-            $priority = array_search($choosenAlternative, $answers);
-            $index = $priority === false ? $question->priority : $priority + $question->priority;
-
-            $answers[$index] = $originalKey;
+            $this->receiveAnswer($question, $choosenAlternative);
         }
 
-        return $answers;
+        return $this->answers;
+    }
+
+    /**
+     * @param AbstractQuestion $question
+     */
+    private function receiveAnswer(AbstractQuestion $question, $choosenAlternative)
+    {
+        $originalKey = $question->getAlternativeOriginalKey($choosenAlternative);
+        $index = $question->getQuestionPriotity($choosenAlternative, $this->answers);
+        $this->answers[$index] = $originalKey;
     }
 
     /**
@@ -79,7 +84,7 @@ class Form
      *
      * @return string
      */
-    private function getValidResponse($response)
+    public function getValidResponse($response)
     {
         if (in_array($response, AbstractQuestion::$questionNumerations)) {
             return $response;
@@ -98,7 +103,7 @@ class Form
     /**
      * @return string
      */
-    private function readFromStdin()
+    public function readFromStdin()
     {
         $handler = fopen('php://stdin', 'r');
         $response = fgetc($handler);

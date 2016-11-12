@@ -3,6 +3,9 @@
         "phpunit/phpunit": "5.6.*"
     },
     "autoload": {
-        "psr-4": {"Geekout\\": "src/"}
+        "psr-4": {
+            "Geekout\\": "src/",
+            "Test\\": "tests/"
+        }
     }
 }
