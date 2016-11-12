@@ -103,6 +103,6 @@ class Form
         $handler = fopen('php://stdin', 'r');
         $response = fgetc($handler);
         fclose($handler);
-        return $response;
+        return strtolower($response);
     }
 }
