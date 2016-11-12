@@ -71,6 +71,7 @@ class Form
 
     /**
      * @param AbstractQuestion $question
+     * @param AbstractQuestion $choosenAlternative
      */
     private function receiveAnswer(AbstractQuestion $question, $choosenAlternative)
     {

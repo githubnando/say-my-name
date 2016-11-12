@@ -19,6 +19,7 @@ class Answer
     /** @var array  */
     private $answers = [];
 
+
     /**
      * Answer constructor.
      *
@@ -50,6 +51,59 @@ class Answer
      */
     public function retrieveUserEquivalentTelevisionShow()
     {
+        $result = $this->countValues($this->answers);
+        arsort($result);
+
+        if ($this->hasConcurrence($result) == true) {
+            $result = $this->resolveConcurrence();
+        }
+
+        $result = array_flip($result);
+        return (string) current($result);
+    }
+
+    /**
+     * @param $counted
+     *
+     * @return bool
+     */
+    private function hasConcurrence($counted)
+    {
+        $first = current($counted);
+        $second = next($counted);
+
+        if ($second && $first == $second) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $objects
+     *
+     * @return array
+     */
+    private function countValues($objects)
+    {
+        $result = [];
+
+        foreach ($objects as $object) {
+            if (isset($result[$object]) == false) {
+                $result[$object] = 0;
+            }
+
+            $result[$object] = ++$result[$object];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    private function resolveConcurrence()
+    {
         $counted = [];
 
         foreach ($this->getAnswers() as $answer) {
@@ -60,10 +114,7 @@ class Answer
             $counted[$answer] = $counted[$answer] +1;
         }
 
-        asort($counted);
-        $counted = array_flip($counted);
-        $showIdentifier = (string) end($counted);
-        return $showIdentifier;
+        return $counted;
     }
 
     /**
