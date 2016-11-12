@@ -12,7 +12,7 @@ class ArrivingAtWork extends AbstractQuestion
 
     public $title = 'Você chega no trabalho e as convenções sociais te obrigam a puxar assunto';
 
-    public $alternatives = [
+    public static $alternatives = [
         'Fala sobre a política, eleições, como tudo é um absurdo',
         'Larga uma frase polêmica e vê uma pequena guerra se formar',
         'Puxa um assunto e te lembram que já foi discutido semana passada',

@@ -11,7 +11,7 @@ class ArrivingAtTheBuilding extends AbstractQuestion
 {
     public $title = 'Chega no prédio e o elevador está cheio';
 
-    public $alternatives = [
+    public static $alternatives = [
         'Convence parte das pessoas a esperarem o próximo',
         'Ignora as pessoas no elevador e entra de qualquer forma',
         'Você questiona a realidade, as coisas e tudo mais. Sobe de escada',

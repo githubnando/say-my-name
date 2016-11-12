@@ -11,7 +11,7 @@ class ScheduleFulfilled extends AbstractQuestion
 {
     public $title = 'A pauta pegou o dia todo, mas você está indo para casa';
 
-    public $alternatives = [
+    public static $alternatives = [
         'Vou chamar aqui o meu Uber',
         'Pegarei o bus junto com o resto do povo',
         'No ponto de ônibus mais uma vez, espero não errar a linha de novo',

@@ -11,9 +11,9 @@ abstract class AbstractQuestion
 {
     public $title = '';
 
-    public $alternatives = [];
-
     public $originalAlternatives = [];
+
+    public static $alternatives = [];
 
     public static $questionNumerations = ['a','b','c','d','e'];
 
@@ -27,9 +27,9 @@ abstract class AbstractQuestion
 
     private function shuffe()
     {
-        $this->originalAlternatives = $this->addNumerations($this->alternatives);
-        shuffle($this->alternatives);
-        $this->alternatives = $this->addNumerations($this->alternatives);
+        $this->originalAlternatives = $this->addNumerations(static::$alternatives);
+        shuffle(static::$alternatives);
+        static::$alternatives = $this->addNumerations(static::$alternatives);
     }
 
 
@@ -40,7 +40,7 @@ abstract class AbstractQuestion
      */
     protected function addNumerations(array $alternatives)
     {
-        return array_combine(self::$questionNumerations, $this->alternatives);
+        return array_combine(self::$questionNumerations, static::$alternatives);
     }
 
     /**
@@ -50,7 +50,28 @@ abstract class AbstractQuestion
      */
     public function getAlternativeOriginalKey($choosenAlternative)
     {
-        $questionResponseToDisplay = $this->alternatives[$choosenAlternative];
+        $questionResponseToDisplay = static::$alternatives[$choosenAlternative];
         return array_search($questionResponseToDisplay, $this->originalAlternatives);
+    }
+
+    /**
+     * @param $letter
+     *
+     * @return mixed
+     */
+    public static function getDescriptionBasedOnAlternativeLetter($letter)
+    {
+        $index = 0;
+        $map = [];
+
+        foreach (self::$questionNumerations as $numeration) {
+            if ($letter == $numeration) {
+                break;
+            }
+
+            $index++;
+        }
+
+        return static::$alternatives[$index];
     }
 }

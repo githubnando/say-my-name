@@ -28,7 +28,7 @@ class Form extends TestCase
 
         foreach ($questions as $question) {
             $questionName = get_class($question);
-            $fakedAnswer = array_search($answers[$questionName], $question->alternatives);
+            $fakedAnswer = array_search($answers[$questionName], $question::$alternatives);
             $this->invoke($mockedForm, 'receiveAnswer', [$question, $fakedAnswer]);
         }
 
@@ -44,12 +44,18 @@ class Form extends TestCase
      */
     public function provideAnswers()
     {
+        // 'a' => 'House of Cards'
+        // 'b' => 'Game of Thrones'
+        // 'c' => 'Lost'
+        // 'd' => 'Breaking Bad'
+        // 'e' => 'Silicon Valley'
+
         return [[[
-            GointToWork::class => 'Levanta a senhora e jura protegê­la com sua vida',
-            ScheduleFulfilled::class => 'No ponto de ônibus mais uma vez, espero não errar a linha de novo',
-            ArrivingAtWork::class => 'Puxa um assunto e te lembram que já foi discutido semana passada',
-            ArrivingAtTheBuilding::class => 'Convence parte das pessoas a esperarem o próximo',
-            InTheMorning::class => 'Levanta e faz café pra todos da casa',
+            GointToWork::class => GointToWork::getDescriptionBasedOnAlternativeLetter('b'),
+            ScheduleFulfilled::class => ScheduleFulfilled::getDescriptionBasedOnAlternativeLetter('c'),
+            ArrivingAtWork::class => ArrivingAtWork::getDescriptionBasedOnAlternativeLetter('c'),
+            ArrivingAtTheBuilding::class => ArrivingAtTheBuilding::getDescriptionBasedOnAlternativeLetter('a'),
+            InTheMorning::class => InTheMorning::getDescriptionBasedOnAlternativeLetter('d'),
         ]]];
     }
 

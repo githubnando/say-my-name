@@ -59,7 +59,7 @@ class Form
         $this->answers = [];
 
         foreach ($questionRepository->getAllQuestions() as $question) {
-            $this->putQuestion($question->title, $question->alternatives);
+            $this->putQuestion($question->title, $question::$alternatives);
 
             $choosenAlternative = $this->getValidResponse($this->readFromStdin());
 

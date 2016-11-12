@@ -11,7 +11,7 @@ class GointToWork extends AbstractQuestion
 {
     public $title = 'Indo para o trabalho você encontra uma senhora idosa caída na rua';
 
-    public $alternatives = [
+    public static $alternatives = [
         'Ela vai atrapalhar seu horário. Oculte o corpo',
         'Levanta a senhora e jura protegê­la com sua vida',
         'Ajuda­a, mas questiona sua real identidade',
