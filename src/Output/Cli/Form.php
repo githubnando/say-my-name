@@ -76,8 +76,7 @@ class Form
     private function receiveAnswer(AbstractQuestion $question, $choosenAlternative)
     {
         $originalKey = $question->getAlternativeOriginalKey($choosenAlternative);
-        $index = $question->getQuestionPriotity($choosenAlternative, $this->answers);
-        $this->answers[$index] = $originalKey;
+        $this->answers[] = $originalKey;
     }
 
     /**

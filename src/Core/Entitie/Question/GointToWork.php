@@ -18,6 +18,4 @@ class GointToWork extends AbstractQuestion
         'Oferece para caminharem juntos até um destino em comum',
         'Testa se ela roda bem no Firefox. Não roda'
     ];
-
-    public $priority = 4;
 }

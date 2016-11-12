@@ -18,6 +18,4 @@ class ScheduleFulfilled extends AbstractQuestion
         'Vou de carro, mas ofereço uma carona para os colegas',
         'Acho que descobri uma forma de fazer aquela senhora rodar no Firefox'
     ];
-
-    public $priority = 1;
 }

@@ -15,8 +15,6 @@ abstract class AbstractQuestion
 
     public $originalAlternatives = [];
 
-    public $priority;
-
     public static $questionNumerations = ['a','b','c','d','e'];
 
     /**
@@ -43,18 +41,6 @@ abstract class AbstractQuestion
     protected function addNumerations(array $alternatives)
     {
         return array_combine(self::$questionNumerations, $this->alternatives);
-    }
-
-    /**
-     * @param $choosenAlternative
-     * @param $answers
-     *
-     * @return mixed
-     */
-    public function getQuestionPriotity($choosenAlternative, $answers)
-    {
-        $priority = array_search($choosenAlternative, $answers);
-        return $priority === false ? $this->priority : $priority + $this->priority;
     }
 
     /**

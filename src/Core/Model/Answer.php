@@ -51,14 +51,14 @@ class Answer
      */
     public function retrieveUserEquivalentTelevisionShow()
     {
-        $result = $this->countValues($this->answers);
-        arsort($result);
+        $countedAnswers = $this->countValues($this->answers);
+        arsort($countedAnswers);
 
-        if ($this->hasConcurrence($result) == true) {
-            $result = $this->resolveConcurrence();
+        if ($this->hasConcurrence($countedAnswers) == true) {
+            $countedAnswers = $this->resolveConcurrence($countedAnswers);
         }
 
-        $result = array_flip($result);
+        $result = array_flip($countedAnswers);
         return (string) current($result);
     }
 
@@ -102,19 +102,21 @@ class Answer
     /**
      * @return array
      */
-    private function resolveConcurrence()
+    private function resolveConcurrence($countedAnswers)
     {
-        $counted = [];
+        $checksum = [
+            'a' => 'e',
+            'b' => 'd',
+            'c' => 'c',
+            'd' => 'b',
+            'e' => 'a',
+        ];
 
-        foreach ($this->getAnswers() as $answer) {
-            if (isset($counted[$answer]) == false) {
-                $counted[$answer] = 0;
-            }
+        $alternativeThatWasChoiceOnlyOneTime = end(array_keys($countedAnswers));
+        $countedAnswers[$alternativeThatWasChoiceOnlyOneTime] = 99;
 
-            $counted[$answer] = $counted[$answer] +1;
-        }
-
-        return $counted;
+        arsort($countedAnswers);
+        return $countedAnswers;
     }
 
     /**

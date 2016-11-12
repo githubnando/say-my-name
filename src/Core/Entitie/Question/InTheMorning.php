@@ -18,6 +18,4 @@ class InTheMorning extends AbstractQuestion
         'Levanta e faz café pra todos da casa',
         'Passa o café e conserta um erro no HTML',
     ];
-
-    public $priority = 5;
 }
