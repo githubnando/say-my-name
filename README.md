@@ -32,7 +32,7 @@ Created with the intent to test some functionalities of PHPUnit and Cli Possibil
 # Installation
 ```sh
 # Clones the repository
-$ git clone https://github.com/ernandos/say-my-name && cd say-my-name
+$ git clone https://github.com/ernjs/say-my-name && cd say-my-name
 
 # Install the dependecies of PHPUnit
 $ composer install
