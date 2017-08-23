@@ -5,8 +5,8 @@
 # Clones the repository
 $ git clone https://github.com/ernjs/say-my-name && cd say-my-name
 
-# Install the dependecies of PHPUnit
-$ composer install
+# Create the autoloading (for dev, use composer install instead)
+$ composer dump
 ```
 
 # Usage
